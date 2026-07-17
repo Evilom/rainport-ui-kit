@@ -117,6 +117,17 @@ function validateCore() {
   }
 
   check(sameDimensions(pngDimensions("preview/rainport-ui-kit-sheet.png"), [1600, 1120]), "contact sheet must be 1600x1120");
+  const readme = readText("README.md");
+  for (const preview of [
+    "preview/game-home.png",
+    "preview/game-loadout.png",
+    "preview/rainport-ui-loadout.png",
+    "preview/rainport-ui-result.png",
+    "preview/rainport-ui-engines.png",
+  ]) {
+    check(sameDimensions(pngDimensions(preview), [1440, 900]), preview + " must be 1440x900");
+    check(readme.includes("(" + preview + ")"), "README does not reference " + preview);
+  }
   return { manifest, tokens, slices, entries, fontFiles };
 }
 
