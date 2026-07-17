@@ -2,6 +2,24 @@
 
 `Rainport Print-Arcade UI` 是一套面向游戏项目的跨引擎界面设计系统。它把项目里反响最好的 UI 语言整理为一个可版本化、可生成、可移植的内部资产包。
 
+## 演示
+
+下面的画面都由 `tools/generate_kit.py` 使用仓库内的令牌、字体、图标和九宫格组件生成，不是与实际资产脱节的概念图。
+
+### 系统总览
+
+![Rainport UI 的面板、按钮、图标和色彩系统](preview/rainport-ui-kit-sheet.png)
+
+### 实际界面组合
+
+| 通勤装备选择 | 到达结算报告 |
+| --- | --- |
+| ![通勤装备选择界面](preview/rainport-ui-loadout.png) | ![雨天通勤到达结算界面](preview/rainport-ui-result.png) |
+
+### 跨引擎适配
+
+![同一套 Rainport UI 在 Unity、Godot 和 Cocos Creator 中的适配关系](preview/rainport-ui-engines.png)
+
 ## 核心原则
 
 - `tokens/rainport.tokens.json` 是唯一可手工修改的设计令牌源。
@@ -24,7 +42,7 @@ rainport-ui-kit/
 │  ├─ unity/               # UPM / UI Toolkit / uGUI 素材
 │  ├─ godot/               # Godot 4 addon
 │  └─ cocos/               # Cocos Creator 3.8 assets
-├─ preview/                # 接触表预览
+├─ preview/                # README 演示图与组件接触表
 └─ tools/                  # 生成与验证脚本
 ```
 

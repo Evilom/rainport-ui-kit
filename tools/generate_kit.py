@@ -652,6 +652,264 @@ def load_font(path: Path, size: int) -> ImageFont.FreeTypeFont | ImageFont.Image
     return ImageFont.load_default()
 
 
+def preview_canvas(width: int, height: int, background: str = "paper") -> tuple[Image.Image, ImageDraw.ImageDraw]:
+    canvas = Image.new("RGBA", (width, height), rgba(background))
+    if background == "paper":
+        grain = Image.open(ROOT / "assets" / "png" / "1x" / "paper_grain.png").convert("RGBA")
+        for y in range(0, height, grain.height):
+            for x in range(0, width, grain.width):
+                canvas.alpha_composite(grain, (x, y))
+    else:
+        rain_draw = ImageDraw.Draw(canvas)
+        for index in range(28):
+            x = (index * 83 + 19) % width
+            y = (index * 137 + 31) % height
+            rain_draw.line((x, y, x - 18, y + 42), fill=rgba("blue"), width=2)
+    return canvas, ImageDraw.Draw(canvas)
+
+
+def preview_asset(name: str, size: tuple[int, int] | None = None) -> Image.Image:
+    source = Image.open(ROOT / "assets" / "png" / "1x" / f"{name}.png").convert("RGBA")
+    if size is None or source.size == size:
+        return source
+    metadata = ASSET_META.get(name, {})
+    if metadata.get("mode") == "sliced":
+        return nine_slice(source, size, metadata["slice"])
+    return source.resize(size, Image.Resampling.LANCZOS)
+
+
+def paste_preview_asset(canvas: Image.Image, name: str, box: tuple[int, int, int, int]) -> None:
+    x, y, width, height = box
+    canvas.alpha_composite(preview_asset(name, (width, height)), (x, y))
+
+
+def preview_fonts() -> dict[str, ImageFont.FreeTypeFont | ImageFont.ImageFont]:
+    display_path = ROOT / "assets" / "fonts" / "ZCOOLKuaiLe-Regular.ttf"
+    body_path = ROOT / "assets" / "fonts" / "NotoSansSC-Variable.ttf"
+    return {
+        "display": load_font(display_path, 68),
+        "title": load_font(display_path, 38),
+        "engine": load_font(display_path, 27),
+        "metric": load_font(display_path, 82),
+        "body": load_font(body_path, 22),
+        "label": load_font(body_path, 17),
+        "small": load_font(body_path, 14),
+    }
+
+
+def draw_preview_button(
+    canvas: Image.Image,
+    draw: ImageDraw.ImageDraw,
+    fonts: dict[str, ImageFont.FreeTypeFont | ImageFont.ImageFont],
+    name: str,
+    label: str,
+    box: tuple[int, int, int, int],
+) -> None:
+    x, y, width, height = box
+    paste_preview_asset(canvas, name, box)
+    text_color = rgba("white") if name in ("button_night", "button_danger") else rgba("ink")
+    draw.text((x + 24, y + 17), label, font=fonts["label"], fill=text_color)
+
+
+def draw_preview_meter(
+    draw: ImageDraw.ImageDraw,
+    box: tuple[int, int, int, int],
+    value: int,
+    fill: str,
+) -> None:
+    x, y, width, height = box
+    draw.rectangle((x, y, x + width, y + height), fill=rgba("white"), outline=rgba("ink"), width=3)
+    inner_width = max(0, round((width - 8) * value / 100))
+    if inner_width:
+        draw.rectangle((x + 4, y + 4, x + 4 + inner_width, y + height - 4), fill=rgba(fill))
+
+
+def draw_preview_alert(
+    canvas: Image.Image,
+    draw: ImageDraw.ImageDraw,
+    fonts: dict[str, ImageFont.FreeTypeFont | ImageFont.ImageFont],
+    label: str,
+    box: tuple[int, int, int, int],
+) -> None:
+    x, y, width, height = box
+    paste_preview_asset(canvas, "alert_danger", box)
+    draw.rectangle((x + 76, y + 16, x + width - 22, y + height - 24), fill=rgba("danger"))
+    text_box = draw.textbbox((0, 0), label, font=fonts["body"])
+    text_height = text_box[3] - text_box[1]
+    draw.text((x + 96, y + (height - text_height) // 2 - 4), label, font=fonts["body"], fill=rgba("white"))
+
+
+def generate_loadout_preview() -> None:
+    canvas, draw = preview_canvas(1440, 900)
+    fonts = preview_fonts()
+
+    paste_preview_asset(canvas, "panel_night", (28, 24, 1384, 86))
+    draw.text((58, 43), "雨港市公共体面管理局", font=fonts["title"], fill=rgba("white"))
+    draw.text((1110, 55), "装备审查 / 08:41", font=fonts["label"], fill=rgba("mint"))
+
+    draw.text((42, 142), "COMMUTE LOADOUT / 通勤装备", font=fonts["label"], fill=rgba("danger"))
+    draw.text((40, 168), "今天也要体面地出门", font=fonts["display"], fill=rgba("ink"))
+    draw.text((44, 244), "预报说只是小雨。预报还说过很多别的。", font=fonts["body"], fill=rgba("muted"))
+
+    cards = [
+        ("panel_paper", 40, "icon_umbrella", "祖传折叠伞", "优点是轻，缺点也是轻。", "覆盖 42%  ·  重量 +1"),
+        ("panel_signal", 465, "icon_raincoat", "香蕉黄长雨衣", "远看像路标，近看像放弃抵抗。", "覆盖 88%  ·  体面 +3"),
+    ]
+    for panel, x, icon_name, title, description, meta in cards:
+        paste_preview_asset(canvas, panel, (x, 292, 390, 324))
+        canvas.alpha_composite(preview_asset(icon_name, (86, 86)), (x + 28, 330))
+        draw.text((x + 130, 329), title, font=fonts["title"], fill=rgba("ink"))
+        draw.text((x + 30, 438), description, font=fonts["body"], fill=rgba("ink"))
+        draw.line((x + 30, 505, x + 344, 505), fill=rgba("ink"), width=3)
+        draw.text((x + 30, 526), meta, font=fonts["label"], fill=rgba("muted"))
+        draw.text((x + 30, 566), "已装入背包", font=fonts["small"], fill=rgba("danger"))
+
+    paste_preview_asset(canvas, "panel_night", (890, 292, 510, 324))
+    draw.text((926, 326), "今日风险评估", font=fonts["title"], fill=rgba("white"))
+    draw.text((925, 382), "67", font=fonts["metric"], fill=rgba("signal"))
+    draw.text((1035, 428), "% 还能维持体面", font=fonts["body"], fill=rgba("white"))
+    draw.text((926, 498), "迟到风险", font=fonts["label"], fill=rgba("rain"))
+    draw_preview_meter(draw, (1060, 500, 286, 24), 58, "danger")
+    draw.text((926, 545), "袜子生还", font=fonts["label"], fill=rgba("rain"))
+    draw_preview_meter(draw, (1060, 547, 286, 24), 19, "signal")
+
+    draw_preview_button(canvas, draw, fonts, "button_signal", "确认，硬着头皮上", (42, 652, 272, 66))
+    draw_preview_button(canvas, draw, fonts, "button_night", "再塞两个塑料袋", (338, 652, 272, 66))
+    draw_preview_button(canvas, draw, fonts, "button_disabled", "天气预报说没事", (634, 652, 272, 66))
+    draw_preview_alert(
+        canvas,
+        draw,
+        fonts,
+        "认真通知：你不是准备充分，你只是塑料袋带得比较多。",
+        (42, 754, 1358, 110),
+    )
+
+    output = ROOT / "preview" / "rainport-ui-loadout.png"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    canvas.convert("RGB").save(output, format="PNG", optimize=False)
+
+
+def generate_result_preview() -> None:
+    canvas, draw = preview_canvas(1440, 900, "night")
+    fonts = preview_fonts()
+
+    paste_preview_asset(canvas, "panel_signal", (30, 24, 1380, 88))
+    draw.text((62, 42), "你淋湿了吗？", font=fonts["title"], fill=rgba("ink"))
+    draw.text((1118, 56), "ARRIVAL / 09:01", font=fonts["label"], fill=rgba("ink"))
+    draw.text((44, 146), "今日通勤受灾报告", font=fonts["display"], fill=rgba("white"))
+    draw.text((48, 220), "衣服可以湿，数据必须说清楚。", font=fonts["body"], fill=rgba("rain"))
+
+    paste_preview_asset(canvas, "panel_paper", (40, 278, 820, 554))
+    canvas.alpha_composite(preview_asset("icon_dry", (96, 96)), (82, 352))
+    draw.text((205, 313), "衣物干燥率", font=fonts["title"], fill=rgba("white"))
+    draw.text((202, 362), "67", font=fonts["metric"], fill=rgba("danger"))
+    draw.text((310, 409), "%", font=fonts["title"], fill=rgba("ink"))
+
+    meters = [
+        ("衬衫", 83, "rain"),
+        ("西裤", 46, "signal"),
+        ("袜子", 0, "danger"),
+        ("笔记本电脑", 100, "mint"),
+    ]
+    for index, (label, value, fill) in enumerate(meters):
+        y = 486 + index * 72
+        draw.text((88, y), label, font=fonts["label"], fill=rgba("ink"))
+        draw_preview_meter(draw, (260, y + 2, 430, 26), value, fill)
+        draw.text((712, y - 1), f"{value}%", font=fonts["label"], fill=rgba("ink"))
+
+    receipt = preview_asset("receipt_paper", (410, 506))
+    canvas.alpha_composite(receipt, (944, 282))
+    draw.rectangle((978, 310, 1318, 716), fill=rgba("white"))
+    draw.text((998, 326), "今日受灾小票", font=fonts["title"], fill=rgba("ink"))
+    draw.text((1000, 388), "到达时间      09:01", font=fonts["label"], fill=rgba("ink"))
+    draw.text((1000, 430), "通勤花费       4 元", font=fonts["label"], fill=rgba("ink"))
+    draw.text((1000, 472), "违规次数       1 次", font=fonts["label"], fill=rgba("ink"))
+    draw.line((998, 520, 1298, 520), fill=rgba("muted"), width=2)
+    draw.text((1000, 548), "袜子：确认阵亡", font=fonts["body"], fill=rgba("danger"))
+    draw.text((1000, 594), "电脑：毫发无伤", font=fonts["body"], fill=rgba("blue"))
+    draw.text((1000, 632), "今日称号", font=fonts["small"], fill=rgba("muted"))
+    draw.text((998, 652), "电脑没事", font=fonts["engine"], fill=rgba("ink"))
+    draw.text((998, 686), "人有点事", font=fonts["engine"], fill=rgba("danger"))
+
+    draw_preview_alert(canvas, draw, fonts, "结论：准时了，但不完全准时。", (900, 800, 500, 74))
+
+    output = ROOT / "preview" / "rainport-ui-result.png"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    canvas.convert("RGB").save(output, format="PNG", optimize=False)
+
+
+def generate_engine_preview() -> None:
+    canvas, draw = preview_canvas(1440, 900)
+    fonts = preview_fonts()
+
+    paste_preview_asset(canvas, "panel_night", (28, 24, 1384, 92))
+    draw.text((58, 43), "ONE UI SYSTEM / THREE ENGINES", font=fonts["title"], fill=rgba("white"))
+    draw.text((1174, 56), "RP/UI 0.1", font=fonts["label"], fill=rgba("mint"))
+    draw.text((42, 150), "一套令牌，三种落地方式", font=fonts["display"], fill=rgba("ink"))
+    draw.text((46, 224), "组件结构可以因引擎而变，视觉规则不能各过各的。", font=fonts["body"], fill=rgba("muted"))
+
+    engines = [
+        {
+            "x": 42,
+            "panel": "panel_paper",
+            "icon": "icon_shield",
+            "title": "UNITY",
+            "subtitle": "UI Toolkit / uGUI",
+            "lines": ["UXML + USS", "UPM 本地包", "9-slice Sprite", "rp- 公共类名"],
+            "button": "button_signal",
+            "button_text": "INSTALL PACKAGE",
+            "text": "ink",
+        },
+        {
+            "x": 512,
+            "panel": "panel_night",
+            "icon": "icon_dry",
+            "title": "GODOT",
+            "subtitle": "Control / Theme",
+            "lines": ["Theme + TRES", "StyleBox 组件", "Addon 目录", "类型变体"],
+            "button": "button_signal",
+            "button_text": "COPY ADDON",
+            "text": "white",
+        },
+        {
+            "x": 982,
+            "panel": "panel_signal",
+            "icon": "icon_check",
+            "title": "COCOS CREATOR",
+            "subtitle": "Sprite / TypeScript",
+            "lines": ["Token 常量", "Sliced Sprite", "Button 状态", "Assets 目录"],
+            "button": "button_night",
+            "button_text": "IMPORT ASSETS",
+            "text": "ink",
+        },
+    ]
+
+    for engine in engines:
+        x = engine["x"]
+        paste_preview_asset(canvas, engine["panel"], (x, 294, 416, 472))
+        canvas.alpha_composite(preview_asset(engine["icon"], (78, 78)), (x + 28, 344))
+        text_color = rgba(engine["text"])
+        secondary = rgba("rain") if engine["text"] == "white" else rgba("muted")
+        draw.text((x + 122, 350), engine["title"], font=fonts["engine"], fill=text_color)
+        draw.text((x + 124, 388), engine["subtitle"], font=fonts["label"], fill=secondary)
+        draw.line((x + 30, 436, x + 370, 436), fill=text_color, width=3)
+        for index, line in enumerate(engine["lines"]):
+            y = 468 + index * 48
+            draw.rectangle((x + 34, y + 6, x + 48, y + 20), fill=rgba("signal"), outline=rgba("ink"), width=2)
+            draw.text((x + 66, y), line, font=fonts["body"], fill=text_color)
+        draw_preview_button(canvas, draw, fonts, engine["button"], engine["button_text"], (x + 30, 682, 340, 62))
+
+    stripe = preview_asset("stripe_warning")
+    for x in range(32, 1408, stripe.width):
+        canvas.alpha_composite(stripe, (x, 808))
+    draw.text((44, 846), "TOKEN SOURCE → PLATFORM ADAPTER → PROJECT OVERRIDE", font=fonts["label"], fill=rgba("ink"))
+    draw.text((1018, 846), "ZERO VISUAL DRIFT", font=fonts["label"], fill=rgba("danger"))
+
+    output = ROOT / "preview" / "rainport-ui-engines.png"
+    output.parent.mkdir(parents=True, exist_ok=True)
+    canvas.convert("RGB").save(output, format="PNG", optimize=False)
+
+
 def generate_contact_sheet() -> None:
     width, height = 1600, 1120
     sheet = Image.new("RGBA", (width, height), rgba("paper"))
@@ -773,6 +1031,9 @@ def main() -> None:
     generate_godot_theme()
     generate_cocos_tokens()
     generate_contact_sheet()
+    generate_loadout_preview()
+    generate_result_preview()
+    generate_engine_preview()
     copy_tree_assets()
     copy_legal_files()
 
@@ -782,7 +1043,7 @@ def main() -> None:
         *sorted((ROOT / "assets" / "png" / "2x").glob("*.png")),
         ROOT / "generated" / "asset-slices.json",
         ROOT / "generated" / "web" / "rainport.tokens.css",
-        ROOT / "preview" / "rainport-ui-kit-sheet.png",
+        *sorted((ROOT / "preview").glob("*.png")),
     ]
     print(json.dumps({"version": TOKENS["version"], "assets": len(asset_names), "sha256": tree_hash(generated_paths)}, indent=2))
 
