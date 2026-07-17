@@ -1,0 +1,17 @@
+* text=auto
+
+*.md text eol=lf
+*.json text eol=lf
+*.py text eol=lf
+*.ps1 text eol=lf
+*.ts text eol=lf
+*.gd text eol=lf
+*.tres text eol=lf
+*.tscn text eol=lf
+*.uss text eol=lf
+*.uxml text eol=lf
+*.svg text eol=lf
+
+*.png binary
+*.ttf binary
+*.zip binary

@@ -1,0 +1,36 @@
+{
+  "name": "Rainport Print-Arcade UI",
+  "displayName": "雨港印刷街机 UI",
+  "packageId": "com.rainport.ui",
+  "version": "0.1.0",
+  "status": "internal-proprietary",
+  "tokenSource": "tokens/rainport.tokens.json",
+  "generator": "tools/generate_kit.py",
+  "prefix": "rp",
+  "compatibility": {
+    "web": "modern evergreen browsers",
+    "unity": "2022.3 LTS or Unity 6; UI Toolkit, with uGUI-compatible PNG exports",
+    "godot": "4.x Control/Theme system",
+    "cocosCreator": "3.8 LTS or compatible later 3.x"
+  },
+  "adapters": {
+    "unity": "adapters/unity",
+    "godot": "adapters/godot",
+    "cocos": "adapters/cocos"
+  },
+  "portableAssets": {
+    "vector": "assets/source",
+    "raster1x": "assets/png/1x",
+    "raster2x": "assets/png/2x",
+    "fonts": "assets/fonts",
+    "sliceManifest": "generated/asset-slices.json"
+  },
+  "excludedScope": [
+    "characters",
+    "roads",
+    "vehicles",
+    "level art",
+    "gameplay rendering",
+    "current in-game visual assets"
+  ]
+}

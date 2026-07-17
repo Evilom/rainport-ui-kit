@@ -1,0 +1,44 @@
+<ui:UXML xmlns:ui="UnityEngine.UIElements">
+    <Style src="../Styles/RainportTheme.uss" />
+    <ui:VisualElement name="rainport-showcase" class="rp-root">
+        <ui:VisualElement class="rp-toolbar">
+            <ui:Label text="雨港市公共体面管理局" class="rp-brand" />
+            <ui:Label text="RP/UI 0.1 · ONLINE" />
+        </ui:VisualElement>
+
+        <ui:Label text="RAINPORT PRINT-ARCADE INTERFACE" class="rp-kicker" />
+        <ui:Label text="今天也要体面地出门" class="rp-display" />
+        <ui:Label text="严肃发布通知，认真讲一件荒唐小事。" class="rp-copy" />
+
+        <ui:VisualElement class="rp-row">
+            <ui:VisualElement class="rp-card">
+                <ui:Label text="祖传折叠伞" class="rp-card__title" />
+                <ui:Label text="优点是轻，缺点也是轻。" />
+                <ui:Label text="可靠度 42% · 重量 +1" class="rp-card__meta" />
+            </ui:VisualElement>
+            <ui:VisualElement class="rp-card rp-card--selected">
+                <ui:Label text="香蕉黄长雨衣" class="rp-card__title" />
+                <ui:Label text="远看像路标，近看像彻底失去信任。" />
+                <ui:Label text="覆盖度 88% · 体面 +3" class="rp-card__meta" />
+            </ui:VisualElement>
+            <ui:VisualElement class="rp-card rp-card--night">
+                <ui:Label text="今日状态" class="rp-card__title" />
+                <ui:VisualElement class="rp-stat-row">
+                    <ui:VisualElement class="rp-stat">
+                        <ui:Label text="体面指数" />
+                        <ui:Label text="67%" class="rp-stat__value" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement class="rp-meter"><ui:VisualElement class="rp-meter__fill" /></ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+
+        <ui:VisualElement class="rp-row">
+            <ui:Button text="确认，硬着头皮上" class="rp-button" />
+            <ui:Button text="查看今日报告" class="rp-button rp-button--night" />
+            <ui:Button text="立即止损" class="rp-button rp-button--danger" />
+        </ui:VisualElement>
+
+        <ui:Label text="认真通知：你不是准备充分，你只是塑料袋带得比较多。" class="rp-alert" />
+    </ui:VisualElement>
+</ui:UXML>

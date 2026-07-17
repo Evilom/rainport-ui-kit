@@ -1,0 +1,189 @@
+[gd_resource type="Theme" load_steps=11 format=3]
+
+[ext_resource type="FontFile" path="res://addons/rainport_ui/fonts/NotoSansSC-Variable.ttf" id="1_body"]
+[ext_resource type="FontFile" path="res://addons/rainport_ui/fonts/ZCOOLKuaiLe-Regular.ttf" id="2_display"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button"]
+bg_color = Color(1.000000, 0.843137, 0.227451, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.062745, 0.129412, 0.164706, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+shadow_color = Color(0.062745, 0.129412, 0.164706, 1)
+shadow_size = 1
+shadow_offset = Vector2(7, 7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_hover"]
+bg_color = Color(1.000000, 0.843137, 0.227451, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.062745, 0.129412, 0.164706, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+shadow_color = Color(0.062745, 0.129412, 0.164706, 1)
+shadow_size = 1
+shadow_offset = Vector2(9, 9)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_pressed"]
+bg_color = Color(1.000000, 0.843137, 0.227451, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.062745, 0.129412, 0.164706, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+shadow_color = Color(0.062745, 0.129412, 0.164706, 1)
+shadow_size = 1
+shadow_offset = Vector2(1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_danger"]
+bg_color = Color(0.937255, 0.356863, 0.274510, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.062745, 0.129412, 0.164706, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+shadow_color = Color(0.062745, 0.129412, 0.164706, 1)
+shadow_size = 1
+shadow_offset = Vector2(7, 7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_button_night"]
+bg_color = Color(0.027451, 0.117647, 0.180392, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.062745, 0.129412, 0.164706, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+shadow_color = Color(0.062745, 0.129412, 0.164706, 1)
+shadow_size = 1
+shadow_offset = Vector2(7, 7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel_paper"]
+bg_color = Color(1.000000, 0.980392, 0.941176, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.062745, 0.129412, 0.164706, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+shadow_color = Color(0.062745, 0.129412, 0.164706, 1)
+shadow_size = 1
+shadow_offset = Vector2(7, 7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel_night"]
+bg_color = Color(0.027451, 0.117647, 0.180392, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.062745, 0.129412, 0.164706, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+shadow_color = Color(0.062745, 0.129412, 0.164706, 1)
+shadow_size = 1
+shadow_offset = Vector2(7, 7)
+
+[sub_resource type="StyleBoxFlat" id="StyleBox_panel_alert"]
+bg_color = Color(0.937255, 0.356863, 0.274510, 1)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.062745, 0.129412, 0.164706, 1)
+corner_radius_top_left = 7
+corner_radius_top_right = 7
+corner_radius_bottom_right = 7
+corner_radius_bottom_left = 7
+content_margin_left = 18.0
+content_margin_top = 14.0
+content_margin_right = 18.0
+content_margin_bottom = 14.0
+shadow_color = Color(0.062745, 0.129412, 0.164706, 1)
+shadow_size = 1
+shadow_offset = Vector2(7, 7)
+
+
+[resource]
+default_font = ExtResource("1_body")
+default_font_size = 18
+Button/colors/font_color = Color(0.062745, 0.129412, 0.164706, 1)
+Button/colors/font_hover_color = Color(0.062745, 0.129412, 0.164706, 1)
+Button/colors/font_pressed_color = Color(0.062745, 0.129412, 0.164706, 1)
+Button/colors/font_disabled_color = Color(0.850980, 0.815686, 0.713725, 1)
+Button/font_sizes/font_size = 18
+Button/styles/normal = SubResource("StyleBox_button")
+Button/styles/hover = SubResource("StyleBox_button_hover")
+Button/styles/pressed = SubResource("StyleBox_button_pressed")
+Button/styles/focus = SubResource("StyleBox_button_hover")
+RainportDangerButton/base_type = &"Button"
+RainportDangerButton/colors/font_color = Color(1.000000, 0.980392, 0.941176, 1)
+RainportDangerButton/styles/normal = SubResource("StyleBox_button_danger")
+RainportNightButton/base_type = &"Button"
+RainportNightButton/colors/font_color = Color(1.000000, 0.980392, 0.941176, 1)
+RainportNightButton/styles/normal = SubResource("StyleBox_button_night")
+RainportPaperPanel/base_type = &"PanelContainer"
+RainportPaperPanel/styles/panel = SubResource("StyleBox_panel_paper")
+RainportNightPanel/base_type = &"PanelContainer"
+RainportNightPanel/styles/panel = SubResource("StyleBox_panel_night")
+RainportAlertPanel/base_type = &"PanelContainer"
+RainportAlertPanel/styles/panel = SubResource("StyleBox_panel_alert")
+RainportDisplayLabel/base_type = &"Label"
+RainportDisplayLabel/fonts/font = ExtResource("2_display")
+RainportDisplayLabel/font_sizes/font_size = 42
+RainportDisplayLabel/colors/font_color = Color(0.062745, 0.129412, 0.164706, 1)
+RainportKickerLabel/base_type = &"Label"
+RainportKickerLabel/font_sizes/font_size = 13
+RainportKickerLabel/colors/font_color = Color(0.388235, 0.443137, 0.478431, 1)

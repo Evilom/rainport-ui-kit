@@ -1,0 +1,337 @@
+{
+  "assets": {
+    "alert_danger": {
+      "file": "assets/png/1x/alert_danger.png",
+      "minSize": [
+        120,
+        72
+      ],
+      "mode": "sliced",
+      "size": [
+        192,
+        96
+      ],
+      "slice": {
+        "bottom": 24,
+        "left": 72,
+        "right": 20,
+        "top": 16
+      }
+    },
+    "button_danger": {
+      "file": "assets/png/1x/button_danger.png",
+      "minSize": [
+        54,
+        48
+      ],
+      "mode": "sliced",
+      "size": [
+        160,
+        64
+      ],
+      "slice": {
+        "bottom": 22,
+        "left": 18,
+        "right": 24,
+        "top": 14
+      }
+    },
+    "button_disabled": {
+      "file": "assets/png/1x/button_disabled.png",
+      "minSize": [
+        54,
+        48
+      ],
+      "mode": "sliced",
+      "size": [
+        160,
+        64
+      ],
+      "slice": {
+        "bottom": 22,
+        "left": 18,
+        "right": 24,
+        "top": 14
+      }
+    },
+    "button_night": {
+      "file": "assets/png/1x/button_night.png",
+      "minSize": [
+        54,
+        48
+      ],
+      "mode": "sliced",
+      "size": [
+        160,
+        64
+      ],
+      "slice": {
+        "bottom": 22,
+        "left": 18,
+        "right": 24,
+        "top": 14
+      }
+    },
+    "button_signal": {
+      "file": "assets/png/1x/button_signal.png",
+      "minSize": [
+        54,
+        48
+      ],
+      "mode": "sliced",
+      "size": [
+        160,
+        64
+      ],
+      "slice": {
+        "bottom": 22,
+        "left": 18,
+        "right": 24,
+        "top": 14
+      }
+    },
+    "button_signal_hover": {
+      "file": "assets/png/1x/button_signal_hover.png",
+      "minSize": [
+        54,
+        48
+      ],
+      "mode": "sliced",
+      "size": [
+        160,
+        64
+      ],
+      "slice": {
+        "bottom": 24,
+        "left": 18,
+        "right": 26,
+        "top": 14
+      }
+    },
+    "button_signal_pressed": {
+      "file": "assets/png/1x/button_signal_pressed.png",
+      "minSize": [
+        54,
+        48
+      ],
+      "mode": "sliced",
+      "size": [
+        160,
+        64
+      ],
+      "slice": {
+        "bottom": 18,
+        "left": 20,
+        "right": 20,
+        "top": 16
+      }
+    },
+    "panel_night": {
+      "file": "assets/png/1x/panel_night.png",
+      "minSize": [
+        52,
+        52
+      ],
+      "mode": "sliced",
+      "size": [
+        128,
+        128
+      ],
+      "slice": {
+        "bottom": 26,
+        "left": 18,
+        "right": 26,
+        "top": 18
+      }
+    },
+    "panel_paper": {
+      "file": "assets/png/1x/panel_paper.png",
+      "minSize": [
+        52,
+        52
+      ],
+      "mode": "sliced",
+      "size": [
+        128,
+        128
+      ],
+      "slice": {
+        "bottom": 26,
+        "left": 18,
+        "right": 26,
+        "top": 18
+      }
+    },
+    "panel_signal": {
+      "file": "assets/png/1x/panel_signal.png",
+      "minSize": [
+        52,
+        52
+      ],
+      "mode": "sliced",
+      "size": [
+        128,
+        128
+      ],
+      "slice": {
+        "bottom": 26,
+        "left": 18,
+        "right": 26,
+        "top": 18
+      }
+    },
+    "paper_grain": {
+      "file": "assets/png/1x/paper_grain.png",
+      "mode": "tile",
+      "size": [
+        128,
+        128
+      ]
+    },
+    "receipt_paper": {
+      "file": "assets/png/1x/receipt_paper.png",
+      "mode": "fixed",
+      "size": [
+        176,
+        208
+      ]
+    },
+    "stripe_warning": {
+      "file": "assets/png/1x/stripe_warning.png",
+      "mode": "tile",
+      "size": [
+        96,
+        20
+      ]
+    },
+    "tag_danger": {
+      "file": "assets/png/1x/tag_danger.png",
+      "minSize": [
+        42,
+        34
+      ],
+      "mode": "sliced",
+      "size": [
+        112,
+        48
+      ],
+      "slice": {
+        "bottom": 18,
+        "left": 14,
+        "right": 20,
+        "top": 12
+      }
+    },
+    "tag_signal": {
+      "file": "assets/png/1x/tag_signal.png",
+      "minSize": [
+        42,
+        34
+      ],
+      "mode": "sliced",
+      "size": [
+        112,
+        48
+      ],
+      "slice": {
+        "bottom": 18,
+        "left": 14,
+        "right": 20,
+        "top": 12
+      }
+    }
+  },
+  "icons": {
+    "icon_alert": {
+      "file": "assets/png/1x/icon_alert.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_bag": {
+      "file": "assets/png/1x/icon_bag.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_budget": {
+      "file": "assets/png/1x/icon_budget.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_check": {
+      "file": "assets/png/1x/icon_check.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_clock": {
+      "file": "assets/png/1x/icon_clock.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_dry": {
+      "file": "assets/png/1x/icon_dry.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_raincoat": {
+      "file": "assets/png/1x/icon_raincoat.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_receipt": {
+      "file": "assets/png/1x/icon_receipt.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_shield": {
+      "file": "assets/png/1x/icon_shield.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_shoe": {
+      "file": "assets/png/1x/icon_shoe.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    },
+    "icon_umbrella": {
+      "file": "assets/png/1x/icon_umbrella.png",
+      "mode": "simple",
+      "size": [
+        64,
+        64
+      ]
+    }
+  },
+  "notes": "Slice values are pixels at 1x. Multiply by texture scale for 2x assets.",
+  "referenceScale": 1,
+  "version": "0.1.0"
+}

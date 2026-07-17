@@ -1,0 +1,111 @@
+{
+  "$schema": "https://design-tokens.github.io/community-group/format/",
+  "name": "Rainport Print-Arcade UI",
+  "version": "0.1.0",
+  "prefix": "rp",
+  "color": {
+    "ink": { "value": "#10212A", "role": "outlines, body text, hard shadows" },
+    "night": { "value": "#071E2E", "role": "toolbars and primary dark surfaces" },
+    "blue": { "value": "#0B4059", "role": "secondary dark data surfaces" },
+    "rain": { "value": "#5DB1C4", "role": "cool information accent" },
+    "paper": { "value": "#EFE8D3", "role": "page and neutral surface" },
+    "paperDeep": { "value": "#D9D0B6", "role": "aged paper divider" },
+    "signal": { "value": "#FFD73A", "role": "primary action and selected state" },
+    "danger": { "value": "#EF5B46", "role": "alerts and consequences" },
+    "mint": { "value": "#D7EF57", "role": "safe or online state" },
+    "white": { "value": "#FFFAF0", "role": "receipts, cards, text on dark" },
+    "muted": { "value": "#63717A", "role": "secondary copy" },
+    "disabled": { "value": "#A59F8D", "role": "disabled controls" }
+  },
+  "typography": {
+    "display": {
+      "family": "ZCOOL KuaiLe",
+      "file": "assets/fonts/ZCOOLKuaiLe-Regular.ttf",
+      "fallback": "Noto Sans SC",
+      "roles": ["display", "verdict", "item-name", "score"]
+    },
+    "body": {
+      "family": "Noto Sans SC",
+      "file": "assets/fonts/NotoSansSC-Variable.ttf",
+      "weights": [400, 500, 700, 900],
+      "roles": ["body", "button", "label", "data"]
+    },
+    "size": {
+      "caption": 12,
+      "body": 16,
+      "button": 16,
+      "cardTitle": 28,
+      "sectionTitle": 42,
+      "display": 72
+    },
+    "lineHeight": {
+      "tight": 0.95,
+      "body": 1.65,
+      "relaxed": 1.8
+    }
+  },
+  "border": {
+    "thin": 2,
+    "base": 3,
+    "heavy": 4
+  },
+  "radius": {
+    "small": 3,
+    "medium": 7,
+    "maximum": 10
+  },
+  "shadow": {
+    "small": { "x": 4, "y": 4, "blur": 0 },
+    "medium": { "x": 7, "y": 7, "blur": 0 },
+    "large": { "x": 11, "y": 11, "blur": 0 },
+    "pressed": { "x": 1, "y": 1, "blur": 0 }
+  },
+  "space": {
+    "1": 6,
+    "2": 10,
+    "3": 16,
+    "4": 24,
+    "5": 36,
+    "6": 56
+  },
+  "rotation": {
+    "cardMin": -2,
+    "cardMax": 2,
+    "stickerMin": -3,
+    "stickerMax": 3
+  },
+  "motion": {
+    "pressMs": 120,
+    "hoverMs": 120,
+    "marqueeSeconds": 18,
+    "pressTranslate": { "x": 3, "y": 3 },
+    "hoverTranslate": { "x": -2, "y": -2 }
+  },
+  "density": {
+    "touchTargetMin": 48,
+    "cardPadding": 20,
+    "panelPadding": 24,
+    "contentMaxWidth": 1180
+  },
+  "asset": {
+    "referenceScale": 1,
+    "iconSize": 64,
+    "panelSize": 128,
+    "buttonWidth": 160,
+    "buttonHeight": 64
+  },
+  "copyTone": {
+    "formula": "official label + concrete absurd consequence",
+    "preferred": [
+      "橙色状态预警：看起来很稳，实际上马上出事。",
+      "装备评估：优点是轻，缺点也是轻。",
+      "综合报告：电脑没事，人有点事。"
+    ],
+    "avoid": [
+      "generic internet slang",
+      "pure cuteness",
+      "unrelated long jokes",
+      "exclamation marks on every sentence"
+    ]
+  }
+}
